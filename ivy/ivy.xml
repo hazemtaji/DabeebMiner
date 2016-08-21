@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+    <info
+        organisation="com.dabeeb"
+        module="dabeeb-miner"
+        status="integration" revision="2.0.0">
+	</info>
+	<configurations>
+		<include file="${basedir}/ivy/ivy-configurations.xml" />
+	</configurations>
+	<dependencies>
+		<dependency org="com.datastax.cassandra" name="cassandra-driver-core" rev="2.0.1" />
+		
+		<dependency org="org.apache.logging.log4j" name="log4j-core" rev="2.0-rc1" />
+		<dependency org="org.apache.logging.log4j" name="log4j-slf4j-impl" rev="2.0-rc1" />
+		
+		<dependency org="org.apache.activemq" name="activemq-client" rev="5.9.1"/>
+		<dependency org="org.apache.activemq" name="activemq-pool" rev="5.9.1"/>
+        
+		<dependency org="org.apache.httpcomponents" name="httpclient" rev="4.3.3" />
+		<dependency org="commons-io" name="commons-io" rev="2.4"/>
+		<dependency org="commons-configuration" name="commons-configuration" rev="1.10"/>
+		<dependency org="commons-collections" name="commons-collections" rev="3.2.1"/>
+        <dependency org="c3p0" name="c3p0" rev="0.9.1.2"/>
+        <dependency org="org.apache.zookeeper" name="zookeeper" rev="3.4.5">
+        	<exclude org="log4j"/>
+        	<exclude org="org.slf4j"/>
+        	<exclude org="org.jboss.netty"/>
+        </dependency>
+        <dependency org="org.apache.curator" name="curator-recipes" rev="2.4.2">
+        	<exclude org="log4j"/>
+        </dependency>
+        
+        <dependency org="org.eclipse.jetty" name="jetty-server" rev="9.2.1.v20140609"/> 
+        <dependency org="org.eclipse.jetty" name="jetty-servlet" rev="9.2.1.v20140609"/> 
+        <dependency org="com.google.code.gson" name="gson" rev="2.2.4"/>
+        
+		<!-- Used by HTML Parser Plugin -->
+		<dependency org="com.googlecode.juniversalchardet" name="juniversalchardet" rev="1.0.3"/>
+		<dependency org="net.sourceforge.nekohtml" name="nekohtml" rev="1.9.20"/>
+        
+        <!-- Used by MySQL Injector Plugin -->
+        <!-- Used by MySQL Regex Filter Loader Plugin -->
+        <dependency org="mysql" name="mysql-connector-java" rev="5.1.30" /> 
+        
+        <!-- Used by RSSParser Plugin -->
+        <dependency org="rome" name="rome" rev="1.0"/>
+        <dependency org="org.rometools" name="rome-modules" rev="1.0"/>
+        
+        
+        <!-- Used by Language Identifier Plugin -->
+        <dependency org="org.apache.tika" name="tika-core" rev="1.5"/>
+        
+        <!-- Used by Solr Indexer Plugin -->
+        <dependency org="org.apache.solr" name="solr-solrj" rev="4.7.2">
+        	<exclude org="log4j"/>
+        </dependency>
+		<dependency org="org.apache.httpcomponents" name="httpmime" rev="4.3.3"/>
+            
+		<dependency org="com.dabeeb" name="boilerpipe" rev="2.2.3"/>
+		<dependency org="com.dabeeb" name="jlibsvm" rev="1.0.0"/>
+	</dependencies>
+</ivy-module>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns:ivy="antlib:org.apache.ivy.ant" default="jar" name="DabeebMiner">
+	<property file="${basedir}/build.properties" /> 
+	
+	<path id="classpath">
+		<fileset dir="${lib.dir}" includes="**/*.jar"/>
+	</path>
+	
+	<target name="clean">
+		<delete dir="${build.dir}" />
+	</target>
+
+	<target name="compile" depends="resolve">
+		<mkdir dir="${classes.dir}" />
+		<javac srcdir="src" destdir="${classes.dir}" classpathref="classpath" debug="true" />
+		<copydir dest="${classes.dir}" src="${web.dir}"></copydir>
+		<copydir dest="${conf.dir}" src="conf"></copydir>
+	</target>
+	
+	<target name="jar" depends="compile">
+		<manifestclasspath property="jar.classpath" jarfile="${build.dir}/${artifactId}-${version}.jar">
+			<classpath refid="classpath"/>
+		</manifestclasspath>
+		<jar destfile="${build.dir}/${artifactId}-${version}.jar" basedir="${classes.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="com.dabeeb.miner.crawl.Crawler"/>
+        		<attribute name="Class-Path" value="${jar.classpath}"/>
+            </manifest>
+        </jar>
+    </target>
+	
+	<target name="publish" depends="jar" description="--> publish this project in the ivy repository">
+	    <ivy:publish artifactspattern="${build.dir}/[artifact]-${version}.[ext]" 
+			resolver="team"
+			pubrevision="${version}" 
+			status="release"
+	    	settingsref="ivy-settings"
+	    	overwrite="true"
+	    />
+	    <echo message="Artifact ${artifactId} released with version ${version}" />
+	</target>
+
+	<target name="resolve" depends="init-ivy" description="--> retrieve dependencies with ivy">
+		<ivy:retrieve settingsref="ivy-settings" sync="true" file="${basedir}/ivy/ivy.xml" pattern="${lib.dir}/[artifact]-[revision].[ext]" />
+	</target>
+	
+	<target name="init-ivy" >
+		<ivy:settings id="ivy-settings" file="${basedir}/ivy/ivysettings.xml"/>
+	</target>
+	
+	<target name="report" depends="init-ivy">
+	    <mkdir dir="report" />
+	    <ivy:resolve type="${ivy.resolve.types}" settingsref="ivy-settings" file="${basedir}/ivy/ivy.xml"/>
+	    <ivy:report todir="report" />
+	</target>
+</project>

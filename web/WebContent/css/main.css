@@ -1,0 +1,174 @@
+@CHARSET "UTF-8";
+
+html, body, td, th {
+	font-family: Lucida Grande,Lucida Sans,Arial,sans-serif;
+	font-size: 12px;
+}
+
+html, body {
+	padding: 0;
+	margin: 0;
+	
+	background-color: #F5F5F5;
+	color: #333;
+}
+
+input, select, textarea {
+	border: 1px solid #c5dbec;
+	background: white;
+	border-radius: 5px;
+	padding: 5px;
+	margin: 0;
+}
+
+input:HOVER, input:ACTIVE,
+textarea:HOVER, textarea:ACTIVE,
+select:HOVER, select:ACTIVE {
+	border: 1px solid #79b7e7;
+}
+
+fieldset {
+	border: none;
+	padding: 0px;
+	margin: 0px;
+} 
+
+
+.logo {
+	background: url(../images/logo.png);
+    background-size: 100px 72px;
+    background-repeat: no-repeat;
+    
+    width: 100px;
+    height: 72px;
+    float:right;
+}
+
+.header {
+	line-height: 72px;
+    background-color: #186DB8;
+    color: white;
+    font-size: 1.6em;
+    /* box-shadow: 0px 10px 2px 5px #186DB8; */
+    padding: 10px;
+    border-bottom: 1px #F7941E solid;
+	text-transform: uppercase;
+}
+
+.header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.header .title {
+	margin-right: 150px;
+	float:left;
+}
+
+.container {
+	width: 1170px;
+	margin: 0 auto;
+}
+
+.nav {
+	background-color: white;
+    border-bottom: 1px #F7941E solid;
+    color: gray;
+}
+
+.nav:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.nav a {
+	color: #787878;
+	text-decoration: none;
+}
+
+.nav li a:HOVER {
+	color: #443685;
+}
+
+.nav a:VISITED {
+	color: #787878;
+}
+
+.nav ul {
+	margin: 0px;
+	padding: 0px
+}
+
+.nav li {
+	position: relative;
+	list-style: none;
+	float: left;
+	display: block;
+	font-size: 1.1em;
+	padding: 5px 10px 7px 10px;;
+	text-align: center;
+	border-radius: 1px;
+	border-top: 2px solid white;
+	text-transform: uppercase;
+}
+
+.nav li:HOVER, .nav li.selected {
+	border-top: 2px solid #F7941E;
+	cursor: pointer;
+	color: #443685;
+}
+
+.page {
+	margin-bottom: 25px;
+}
+
+.ui-jqgrid input, .ui-jqgrid select {
+	padding: 0px;
+	border-radius: 0px;
+}
+
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.wwlbl:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.wwgrp {
+	float: left;
+	margin: 0 5px;
+}
+
+.group {
+    display: flex;
+    align-items: flex-end;
+    
+	margin-top: 10px;
+}
+
+.field-item {
+	float: left;
+	margin: 0 5px;
+}
+
+label.label {
+	width: auto;
+	margin-bottom: 3px;
+	float: none;
+	font-style: normal;
+	font-size: 1.1em;
+	display: block;
+}
+
+th {
+	font-weight: bold;
+	padding-right: 10px;
+	text-align: left;
+}

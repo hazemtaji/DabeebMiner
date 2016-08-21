@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<crawler>
+		<!-- Number of worker threads -->
+		<threadcount>10</threadcount>
+		
+		<!-- Depth at which to stop -->
+		<maxDepth>2</maxDepth>
+		
+		<!-- Unique numnber identifying the crawler -->
+		<id>1</id>
+	</crawler>
+	<parser>
+		<!-- Try to detect character encoding for the following MIME types -->
+		<encodedTypes>
+			<type>text/html</type>
+			<type>application/xhtml+xml</type>
+		</encodedTypes>
+		
+		<html>
+			<outlinks>
+				<!-- Do not extract links from those tags -->
+				<ignoreTags>img,script,link,form</ignoreTags>
+			</outlinks>
+		</html>
+	</parser>
+	<urlnormalizer>
+		<regex>
+			<!-- Path for regex URL normalization rules -->
+			<file>conf/regex-normalize.xml</file>
+		</regex>
+	</urlnormalizer>
+	<urlfilter>
+		<regex>
+			<!-- Path for regex URL filter rules -->
+			<file>conf/regex-urlfilter.txt</file>
+		</regex>
+	</urlfilter>
+	<fetcher>
+		<!-- Timeout for download in milliseconds -->
+		<timeout>5000</timeout>
+		
+		<!-- Maximum allowed number of redirects -->
+		<maxredirects>5</maxredirects>
+		
+		<!-- Size limit before truncating content -->
+		<sizelimit>10485760</sizelimit>
+		
+		<!-- Allow the download of the following MIME types -->
+		<allowedMimeTypes>
+			<mimetype>text/html</mimetype>
+			<mimetype>application/xhtml+xml</mimetype>
+			<mimetype>application/rss+xml</mimetype>
+			<mimetype>text/xml</mimetype>
+			<mimetype>application/xml</mimetype>
+			<mimetype>application/atom+xml</mimetype>
+		</allowedMimeTypes>
+		
+	</fetcher>
+	
+	<scheduler>
+		<!-- Politeness Policies -->
+		<policy>
+			<host>
+				<!-- Maximum number of connections per host -->
+				<maxconnections>1</maxconnections>
+				
+				<!-- Minimum number of milliseconds to wait between requests -->
+				<interval>1000</interval>
+				
+				<!-- Number of consecutive errors per host before blacklisting -->
+				<tolerance>5</tolerance>
+				
+				<!-- Number of seconds to blacklist host -->
+				<blacklistduration>3600</blacklistduration>
+			</host>
+		</policy>
+	</scheduler>
+	
+	<topic-classifier>
+		<languages>ar</languages>
+		<categories>business,culture,health,politics,religion,scitech,sports</categories>
+		<keywords>
+			<business>business|economics|economy</business>
+			<culture>cinema|culture|entertainment|music|fashion</culture>
+			<health>health</health>
+			<politics>politics</politics>
+			<religion>religion</religion>
+			<scitech>technology|scitech|science</scitech>
+			<sports>sports</sports>
+		</keywords>
+	</topic-classifier>
+	
+	<plugins>
+		<!-- Fetcher Plugins -->
+		<plugin>com.dabeeb.miner.fetch.alarabiya.AlArabiyaFetcherFactory</plugin>
+	
+		<!-- Parser Plugins -->
+		<plugin>com.dabeeb.miner.parse.html.HTMLParserFactory</plugin>
+		<plugin>com.dabeeb.miner.parse.rss.RSSParserFactory</plugin>
+		
+		<!-- URL Normalizer Plugins -->
+		<plugin>com.dabeeb.miner.net.urlnormalizer.basic.BasicURLNormalizerFactory</plugin>
+		<plugin>com.dabeeb.miner.net.urlnormalizer.regex.RegexURLNormalizerFactory</plugin>
+		
+		<!-- URL Filter Plugins -->
+		<plugin>com.dabeeb.miner.net.urlfilter.regex.RegexURLFilterFactory</plugin>
+		
+		<!-- Index Filter Plugins -->
+		<!-- <plugin>com.dabeeb.miner.index.filter.article.ArticleExtractorFilterFactory</plugin> --> <!-- Replaced by boilerplate -->
+		<plugin>com.dabeeb.miner.index.filter.classifier.ClassifierFilterFactory</plugin>
+		<plugin>com.dabeeb.miner.index.filter.source.SourceTaggerFilterFactory</plugin>
+		<plugin>com.dabeeb.miner.index.filter.author.AuthorTaggerFilterFactory</plugin>
+		<plugin>com.dabeeb.miner.index.filter.location.LocationTaggerFilterFactory</plugin>
+		
+		 <!-- Indexer Plugins -->
+		<plugin>com.dabeeb.miner.index.solr.SolrIndexerFactory</plugin>
+		
+		<plugin>com.dabeeb.miner.data.provider.geo.GeographicalDataProviderFactory</plugin>
+	</plugins>
+	
+</config>

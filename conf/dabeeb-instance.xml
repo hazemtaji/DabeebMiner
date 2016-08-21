@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<dbConnectionManager>
+		<connection>
+			<name>mysql</name>
+			<url>jdbc:mysql://localhost:3306/dabeeb_miner</url>
+			<user>root</user>
+			<password>1@qWaSzX</password>
+		</connection>
+		<connection>
+			<name>mysql-commons</name>
+			<url>jdbc:mysql://localhost:3306/dabeeb_commons</url>
+			<user>root</user>
+			<password>1@qWaSzX</password>
+		</connection>
+	</dbConnectionManager>
+	
+	<console>
+		<username>admin</username>
+		<password>1@qWaSzX</password>
+		<port>8080</port>
+	</console>
+	
+	<cassandra>
+		<contactpoint>localhost</contactpoint>
+	</cassandra>
+	
+	<messaging>
+		<url>failover://(tcp://localhost:61616)?initialReconnectDelay=100</url>
+	</messaging>
+
+	<crawler>
+		<threadcount>10</threadcount>
+	</crawler>
+	<injector>
+		<mysql>
+			<connection>mysql</connection>
+		</mysql>
+	</injector>
+	
+	<fetcher>
+		<alarabiya>
+			<cookiename>YPF8827340282Jdskjhfiw_928937459182JAX666</cookiename>
+			<ipaddress>94.200.0.42</ipaddress>
+		</alarabiya>
+	</fetcher>
+	
+	<regexUrlFilter>
+		<!-- <loader>com.dabeeb.miner.net.urlfilter.regex.ConfigRegexRulesLoader</loader> -->
+		<loader>com.dabeeb.miner.net.urlfilter.regex.MySQLRegexRulesLoader</loader>
+	</regexUrlFilter>
+	
+	<mysqlRegexRulesLoader>
+		<connection>mysql</connection>
+	</mysqlRegexRulesLoader>
+	
+	<geographicalDataProvider>
+		<connection>mysql-commons</connection>
+	</geographicalDataProvider>
+	
+	<sourceTagger>
+		<connection>mysql</connection>
+	</sourceTagger>
+	
+	<indexer>
+		<solr>
+			<type>standalone</type>
+			<url>http://localhost:8983/solr/core-ar/</url>
+			
+			<!-- <type>cloud</type>
+			<url>node1.dabeeb.com,node2.dabeeb.com,node3.dabeeb.com,node4.dabeeb.com,node5.dabeeb.com</url>
+			<collection>dabeeb-collection</collection> -->
+			
+			<commitsize>250</commitsize>
+		</solr>
+	</indexer>
+	
+	<zookeeper>
+		<servers>
+			<server>localhost:2181</server>
+		</servers>
+	</zookeeper>
+</config>
